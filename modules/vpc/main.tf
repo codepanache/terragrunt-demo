@@ -1,3 +1,6 @@
+provider "google" {
+  project    = var.project_id
+}
 resource "google_compute_subnetwork" "vpc_subnet" {
     for_each =  {for idx,zone in var.regions: zone => idx}
     name          = format("%s-%s",var.subnet_prefix,each.key)
@@ -13,4 +16,8 @@ resource "google_compute_subnetwork" "vpc_subnet" {
 resource "google_compute_network" "vpc_network" {
   name                    = var.vpc_name
   auto_create_subnetworks = false
+}
+
+terraform {
+    backend "gcs" {}
 }
