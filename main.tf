@@ -14,7 +14,3 @@ module "vpc"{
   secondary_ip_range_name = var.secondary-ip-range-name
 }
 
-
-terraform {
-  backend "gcs" {  }
-}
